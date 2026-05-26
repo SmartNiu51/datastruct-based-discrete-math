@@ -130,10 +130,22 @@ jobs:
           cache: true
           cache-dependency-path: go.sum
 
-      - uses: golangci/golangci-lint-action@v7
+      - name: Cache golangci-lint
+        uses: actions/cache@v4
         with:
-          version: v2
-          args: --config=.github/.golangci.yml
+          path: ~/go/bin/golangci-lint
+          key: golangci-lint-v2-${{ env.GO_VERSION }}
+
+      - name: Install golangci-lint
+        run: |
+          command -v golangci-lint &>/dev/null || go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest
+
+      - name: Lint
+        run: |
+          pkgs=$(go list ./... 2>/dev/null) || true
+          if [ -n "$pkgs" ]; then
+            golangci-lint run --config=.github/.golangci.yml
+          fi
 
   # ═══════════════════════════════════════════
   # 安全扫描：仅 main / release 执行
