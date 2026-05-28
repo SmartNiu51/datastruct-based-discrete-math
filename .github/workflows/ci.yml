@@ -4,14 +4,14 @@ on:
   push:
     branches:
       - main
-      - develop/**
+      - develop
       - release/**
       - fix/**
       - feature/**
   pull_request:
     branches:
       - main
-      - develop/**
+      - develop
 
 # 🔁 同一分支/PR 有新 push 时，自动取消旧 run，节省资源
 concurrency:
@@ -119,7 +119,7 @@ jobs:
     if: |
       github.event_name == 'pull_request' ||
       github.ref == 'refs/heads/main' ||
-      startsWith(github.ref, 'refs/heads/develop/') ||
+      github.ref == 'refs/heads/develop' ||
       startsWith(github.ref, 'refs/heads/release/')
     steps:
       - uses: actions/checkout@v4
