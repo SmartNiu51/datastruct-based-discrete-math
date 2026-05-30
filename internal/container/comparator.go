@@ -15,3 +15,5 @@ package container
 type Comparator[T any] interface {
 	Compare(a, b T) int
 }
+
+type CmpFunc[T any] = func(a, b T) int
