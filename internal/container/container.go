@@ -1,9 +1,9 @@
-// Package basic 提供所有数据结构的基础接口定义。
+// Package container 提供所有数据结构的基础接口定义。
 //
 // 本包定义了贯穿整个库的原子接口（Sized、Clearable、Membership 等）
 // 及其复合接口（Container、MutableContainer）。
 // 所有上层数据结构接口均通过嵌入本包的接口来声明其行为契约。
-package basic
+package container
 
 // Sized 表示可查询元素数量的容器。
 type Sized interface {

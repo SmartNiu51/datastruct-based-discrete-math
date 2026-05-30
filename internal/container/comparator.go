@@ -1,4 +1,4 @@
-package basic
+package container
 
 // Comparator 定义两个同类型元素的比较语义。
 //
