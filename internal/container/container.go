@@ -5,10 +5,10 @@
 // 所有上层数据结构接口均通过嵌入本包的接口来声明其行为契约。
 package container
 
-// Sized 表示可查询元素数量的容器。
-type Sized interface {
-	// Sized 返回容器中元素的数量。
-	Sized() int
+// Size 表示可查询元素数量的容器。
+type Size interface {
+	// Size 返回容器中元素的数量。
+	Size() int
 	// Empty 返回容器是否为空。
 	Empty() bool
 }
@@ -27,10 +27,10 @@ type Membership[T any] interface {
 
 // Container 是可查询大小、可清空、可判断成员的基础容器接口。
 //
-// 它是 Sized、Clearable 和 Membership 的并集，
+// 它是 Size、Clearable 和 Membership 的并集，
 // 被所有具体数据结构接口所嵌入。
 type Container[T any] interface {
-	Sized
+	Size
 	Clearable
 	Membership[T]
 }
